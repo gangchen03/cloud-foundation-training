@@ -14,8 +14,7 @@
  * limitations under the License.
  */
 
-/**
+
 output "remote_state_bucket" {
     value = google_storage_bucket.remote_state.url
 }
-*/

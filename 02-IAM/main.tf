@@ -38,6 +38,23 @@ provider "google" {
  * Reference - https://github.com/terraform-google-modules/terraform-google-iam
  *
  */
+
 module "project_iam_bindings" {
+
+  source   = "terraform-google-modules/iam/google//modules/projects_iam"
+  projects = [var.project_id]
+  mode     = "additive"
+
+  bindings = {
+    "roles/compute.networkAdmin" = [
+      "serviceAccount:cft-training@${var.project_id}.iam.gserviceaccount.com",
+    ]
+    "roles/compute.admin" = [
+      "serviceAccount:cft-training@${var.project_id}.iam.gserviceaccount.com",
+    ]
+    "roles/cloudfunctions.admin" = [
+      "serviceAccount:cft-training@${var.project_id}.iam.gserviceaccount.com",
+    ]
+  }
 
 }
